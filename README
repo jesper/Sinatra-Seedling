@@ -1,0 +1,1 @@
+A very simple Ruby Sinatra powered webapp base project. Uses sinatra-authenticaion for user login & permissions, and Twitter Bootstrap for styling.
