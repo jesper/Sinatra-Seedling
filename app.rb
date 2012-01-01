@@ -1,26 +1,28 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/base'
 require 'mongo_mapper'
 require 'digest/sha1'
 require 'rack-flash'
 require 'sinatra-authentication'
 require 'haml'
 
-use Rack::Session::Cookie, :secret => 'ch4ng3 m3!'
-use Rack::Flash
+class Seedling < Sinatra::Base
 
-logger = Logger.new($stdout)
-MongoMapper.connection = Mongo::Connection.new('localhost', 27017, :logger => logger)
-MongoMapper.database = 'sinatra-seedling'
-MongoMapper.database.authenticate('sinatra-seedling', '')
-
-set :sinatra_authentication_view_path, Pathname(__FILE__).dirname.expand_path + 'views/'
-
-get '/' do
-  @users = User.all
-  haml :index
-end
-
-get '/signup' do
-  haml :signup
+  get '/' do
+    @users = User.all
+    @page_title = 'Home'
+    haml :index
+  end
+  
+  get '/login' do
+    @page_title = 'Login'
+    haml :login
+  end
+  
+  get '/signup' do
+    @page_title = 'Sign Up'
+    haml :signup
+  end
+  
 end

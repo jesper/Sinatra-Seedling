@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 %html
   %head
-    %title TITLE_TBD
+    %title
+      = @page_title + ' - ' unless @page_title.nil?
+      = settings.project_name
+ 
     %link{"rel" => "stylesheet", "href" => "http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css", "type" => "text/css"}
     %link{"rel" => "stylesheet", "href" => "/bootstrap-hacks.css", "type" => "text/css"}
   %body
@@ -12,7 +15,7 @@
       .fill
         .container
           %a{:class=>'brand', :href=>'#'}
-            TBD_PROJECT_NAME
+            = settings.project_name
           %ul{:class=>'nav'}
             %li{:class=>'active'}
               %a{:href=>'#'} Home
@@ -24,7 +27,8 @@
     .container
       .content
         .page-header
-          %h1 TBD_PAGE_NAME
+          %h1
+            = @page_title unless @page_title.nil?
         .row
           .span10
             =yield
