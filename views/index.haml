@@ -1,8 +1,4 @@
 %table
-  %tr
-    %th
-    - if current_user.admin?
-      %th permission level
   - @users.each do |user|
     %tr
       %td

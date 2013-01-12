@@ -2,9 +2,13 @@
 %html
   %head
     %title
-      = @page_title + ' - ' unless @page_title.nil?
+
+      - if @page_title.nil?
+        - @page_title = request.path_info[1..-1].capitalize
+
+      = @page_title
       = settings.project_name
- 
+
     %link{"rel" => "stylesheet", "href" => "http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css", "type" => "text/css"}
     %link{"rel" => "stylesheet", "href" => "/bootstrap-hacks.css", "type" => "text/css"}
   %body
@@ -23,12 +27,12 @@
               %a{:href=>'#'} About
             %li
               %a{:href=>'#'} Contact
-  
+
     .container
       .content
         .page-header
           %h1
-            = @page_title unless @page_title.nil?
+            = @page_title
         .row
           .span10
             =yield

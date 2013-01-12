@@ -1,8 +1,11 @@
+require 'bundler'
+Bundler.require
+
 require './app'
 
 Seedling.set :project_name, 'Seedling'
 
-use Rack::Session::Cookie, :secret => 'ch4ng3 m3!'
+use Rack::Session::EncryptedCookie, :secret => 'ch4ng3 m3! bro$$$$$$'
 use Rack::Flash
 
 logger = Logger.new($stdout)

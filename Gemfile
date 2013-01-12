@@ -1,8 +1,11 @@
 source 'http://rubygems.org'
 gem 'sinatra'
 gem 'mongo_mapper'
-gem 'digest/sha1'
-gem 'rack-flash'
+gem 'bson_ext'
+gem 'shotgun'
+gem 'encrypted_cookie'
+gem 'rack'
+gem 'rack-flash3'
 gem 'sinatra-authentication'
 gem 'haml'
 
