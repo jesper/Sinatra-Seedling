@@ -6,6 +6,7 @@
 
     %span(class='add-on')
       %i(class='icon-key')
-    %input{:id => "user_password", :name => "password", :placeholder => "Password", :type => "password", :size => 10}
+    %input{:id => "user_password", :name => "password", :placeholder => "Password", :class => 'span2', :type => "password", :size => 10}
 
-    %input{:value => "Login", :class => 'btn', :type => "submit"}
+    %button{:value => "Login", :class => 'btn btn-success', :type => "button"}
+      %i(class='icon-circle-arrow-right icon-large') Login
