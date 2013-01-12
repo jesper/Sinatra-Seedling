@@ -1,4 +1,11 @@
 %form{:action => "/login", :method => "post"}
-  %input{:id => "user_email", :name => "email", :placeholder => "E-Mail", :class => 'xlarge', :type => 'text', :size => 30}
-  %input{:id => "user_password", :name => "password", :placeholder => "Password", :type => "password"}
-  %input{:value => "Login", :class => 'btn', :type => "submit"}
+  .input-prepend
+    %span(class='add-on')
+      %i(class='icon-envelope')
+    %input{:id => "user_email", :name => "email", :placeholder => "E-Mail", :class => 'span2', :type => 'text', :size => 50}
+
+    %span(class='add-on')
+      %i(class='icon-key')
+    %input{:id => "user_password", :name => "password", :placeholder => "Password", :type => "password", :size => 10}
+
+    %input{:value => "Login", :class => 'btn', :type => "submit"}
