@@ -1,42 +1,73 @@
 <!DOCTYPE html>
 %html
   %head
+    %meta{'name' => "viewport", 'content' => "width=device-width, initial-scale=1.0"}
     %title
 
       - if @page_title.nil?
         - @page_title = request.path_info[1..-1].capitalize
 
       = @page_title
+      \-
       = settings.project_name
 
     %script{:type => "text/javascript", :src  => "http://use.edgefonts.net/quantico.js"}
+
+    %script{:type => "text/javascript", :src  => 'http://www.google.com/jsapi'}
+
+    :javascript
+      google.load("jquery", "1.7.1");
+
+
     %link{"rel" => "stylesheet", "href" => "/bootstrap/css/bootstrap.min.css", "type" => "text/css"}
     %link{"rel" => "stylesheet", "href" => "/bootstrap-hacks.css", "type" => "text/css"}
+    %link{"rel" => "stylesheet", "href" => "/bootstrap/css/bootstrap-responsive.min.css", "type" => "text/css"}
+    %script{:type => "text/javascript", :src  => "/bootstrap/js/bootstrap.min.js"}
+
     %link{"rel" => "stylesheet", "href" => "/FortAwesome-Font-Awesome-16b6298/css/font-awesome.min.css", "type" => "text/css"}
 
   %body
 
-    - if flash[:notice]
-      #sinatra_authentication_flash= flash[:notice]
+
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container
-          %a{:class=>'brand', :href=>'#'}
+          %a{:class =>'btn btn-navbar', 'data-toggle' => 'collapse', 'data-target' => '.nav-collapse'}
+            %span{:class => 'icon-bar'}
+            %span{:class => 'icon-bar'}
+            %span{:class => 'icon-bar'}
+
+          %a{:class=> 'brand', :href=> '#'}
             = settings.project_name
-          %ul{:class=>'nav'}
-            %li{:class=>'active'}
-              %a{:href=>'#'} Home
-            %li
-              %a{:href=>'#'} About
-            %li
-              %a{:href=>'#'} Contact
+          .nav-collapse.collapse
+            %ul.nav
+              %li{:class=>'active'}
+                %a{:href=>'#'} Home
+              %li
+                %a{:href=>'#'} About
+              %li
+                %a{:href=>'#'} Contact
 
-            - if not logged_in?
-              %a{:href => "/signup", :value => "Join, it's free!", :class => 'btn btn-success', :type => "submit"}
-                Join, it's free!
+            .pull-right
+              %a{:href => "/signup", :value => "Join, it's free!", :class => 'btn btn-success'}
+                Sign up, it's free!
                 %i(class='loginbox-icon icon-bolt icon-large')
+              - if not logged_in?
+                %a{:href => "/login", :value => "Login", :class => 'btn btn-info'}
+                  Login
+                  %i(class='loginbox-icon icon-lock icon-large')
 
-          = login_box
+    - if flash[:notice]
+      .alert.alert-error.fade.in.out
+        %button{:class => 'close', "data-dismiss" => 'alert'}
+          &times;
+        = flash[:notice]
+
+    :javascript
+      $('.close').click(function () {
+        $('.alert').slideUp(150);
+      })
+
 
     .container
       .content

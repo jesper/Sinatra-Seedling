@@ -12,11 +12,16 @@ class Seedling < Sinatra::Base
   get '/' do
     @users = User.all
     @page_title = 'Home'
+    flash[:notice] = 'xxxxxxxxwat wat wat'
     haml :index
   end
 
   get '/login' do
-    redirect '/'
+    haml :login
+  end
+
+  get '/signup' do
+    haml :signup
   end
 
   helpers do
