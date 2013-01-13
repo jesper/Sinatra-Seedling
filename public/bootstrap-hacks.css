@@ -9,7 +9,7 @@ body {
   text-align: center; /* center align it with the container */
 }
 .container {
-  width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+  /*width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
 }
 
 /* The white background content wrapper */
@@ -49,7 +49,26 @@ body {
   font-family: quantico, serif;
 }
 
+.navbar-inner {
+  padding-left: 20% !important;
+}
+
+.navbar-form{
+  padding-right: 10px !important;
+}
+
+.navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+  width: auto;
+}
+
+.loginbox-icon {
+  padding-left: 5px;
+}
+
 .btn
 {
   margin-left: 5px;
+  -webkit-border-radius: 6px !important;
+  -moz-border-radius: 6px !important;
+  border-radius: 3px !important;
 }

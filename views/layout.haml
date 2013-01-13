@@ -31,6 +31,13 @@
             %li
               %a{:href=>'#'} Contact
 
+            - if not logged_in?
+              %a{:href => "/signup", :value => "Join, it's free!", :class => 'btn btn-success', :type => "submit"}
+                Join, it's free!
+                %i(class='loginbox-icon icon-bolt icon-large')
+
+          = login_box
+
     .container
       .content
         .page-header

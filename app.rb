@@ -7,7 +7,6 @@ require 'sinatra-authentication'
 require 'haml'
 
 class Seedling < Sinatra::Base
-  register Sinatra::SinatraAuthentication
   set :sinatra_authentication_view_path, Pathname(__FILE__).dirname.expand_path + 'views/'
 
   get '/' do
@@ -16,4 +15,19 @@ class Seedling < Sinatra::Base
     haml :index
   end
 
+  get '/login' do
+    redirect '/'
+  end
+
+  helpers do
+    def login_box
+      if not logged_in?
+        haml :login
+      else
+        haml :logout
+      end
+    end
+  end
+
+  register Sinatra::SinatraAuthentication
 end

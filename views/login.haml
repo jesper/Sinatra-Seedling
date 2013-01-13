@@ -1,12 +1,13 @@
-%form{:action => "/login", :method => "post"}
+%form{:action => "/login", :method => "post", :class => "navbar-form pull-right"}
   .input-prepend
     %span(class='add-on')
       %i(class='icon-envelope')
-    %input{:id => "user_email", :name => "email", :placeholder => "E-Mail", :class => 'span2', :type => 'text', :size => 50}
+    %input{:id => "user_email", :name => "email", :placeholder => "E-Mail", :class => 'span2', :type => 'text', :style => 'border-radius: 0px; border-right: 0px;'}
 
     %span(class='add-on')
       %i(class='icon-key')
-    %input{:id => "user_password", :name => "password", :placeholder => "Password", :class => 'span2', :type => "password", :size => 10}
+    %input{:id => "user_password", :name => "password", :placeholder => "Password", :class => 'span2', :type => "password"}
 
-    %button{:value => "Login", :class => 'btn btn-success', :type => "button"}
-      %i(class='icon-circle-arrow-right icon-large') Login
+    %button{:value => "Login", :class => 'btn btn-info', :type => "submit"}
+      Login
+      %i(class='loginbox-icon icon-lock icon-large')
