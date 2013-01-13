@@ -22,13 +22,35 @@ class Seedling < Sinatra::Base
     haml :signup
   end
 
-  helpers do
-    def login_box
-      if not logged_in?
-        haml :login
-      else
-        haml :logout
-      end
+  get '/settings/?:id?' do
+    login_required
+    redirect '/' unless current_user.id.to_s == params[:id] || current_user.admin?
+
+    if params[:id]
+      @user = User.get(:id => params[:id])
+    else
+      @user = current_user
+    end
+
+    haml :settings
+  end
+
+  post '/settings/?:id?' do
+    login_required
+    redirect "/" unless current_user.admin? || current_user.id.to_s == params[:id]
+    user = User.get(:id => params[:id])
+    user_attributes = params[:user]
+
+    if params[:user][:password_confirmation] == ""
+        user_attributes.delete("password")
+        user_attributes.delete("password_confirmation")
+    end
+
+    if user.update(user_attributes)
+      redirect '/'
+    else
+      @error = "There were some problems with your updates: #{user.errors}."
+      redirect "/settings/#{user.id}?"
     end
   end
 
