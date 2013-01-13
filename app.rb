@@ -22,6 +22,17 @@ class Seedling < Sinatra::Base
     haml :signup
   end
 
+  post '/signup' do
+    @user = User.set(params[:user])
+    if @user.valid && @user.id
+      session[:user] = @user.id
+      redirect '/'
+    else
+      @error =  "There were some problems creating your account: #{@user.errors}."
+      haml :signup
+    end
+  end
+
   get '/settings/?:id?' do
     login_required
     redirect '/' unless current_user.id.to_s == params[:id] || current_user.admin?
@@ -41,7 +52,7 @@ class Seedling < Sinatra::Base
     user = User.get(:id => params[:id])
     user_attributes = params[:user]
 
-    if params[:user][:password_confirmation] == ""
+    if params[:user][:password] == ""
         user_attributes.delete("password")
         user_attributes.delete("password_confirmation")
     end

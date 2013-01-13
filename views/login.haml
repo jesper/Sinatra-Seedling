@@ -1,6 +1,5 @@
 - if request.referer and request.referer.include? '/login'
-  .alert.alert-error
-    Wrong username and/or password.
+  = haml :error, :locals => {:error => "Incorrect email or password"}
 
 %form{:action => "/login", :method => "post"}
   .input-prepend

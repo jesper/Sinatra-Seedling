@@ -1,5 +1,7 @@
-%form{:action => "/signup", :method => "post"}
+- if @error
+  = haml :error, :locals => {:error => @error}
 
+%form{:action => "/signup", :method => "post"}
   %input{:id => "user_email", :name => "user[email]", :placeholder => "E-Mail", :class => 'xlarge', :type => 'text', :size => 30}
   %br
   %input{:id => "user_password", :name => "user[password]", :placeholder => "Password", :type => "password"}
