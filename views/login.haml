@@ -1,13 +1,18 @@
-%form{:action => "/login", :method => "post", :class => "navbar-form"}
+- if request.referer and request.referer.include? '/login'
+  .alert.alert-error
+    Wrong username and/or password.
+
+%form{:action => "/login", :method => "post"}
   .input-prepend
     %span(class='add-on')
       %i(class='icon-envelope')
-    %input{:id => "user_email", :name => "email", :placeholder => "E-Mail", :class => 'span2', :type => 'text', :style => 'border-radius: 0px; border-right: 0px;'}
+    %input{:id => "user_email", :name => "email", :placeholder => "E-Mail", :class => 'span2', :type => 'text'}
 
+  .input-prepend
     %span(class='add-on')
       %i(class='icon-key')
     %input{:id => "user_password", :name => "password", :placeholder => "Password", :class => 'span2', :type => "password"}
 
-    %button{:value => "Login", :class => 'btn btn-info', :type => "submit"}
-      Login
-      %i(class='loginbox-icon icon-lock icon-large')
+  %button{:value => "Login", :class => 'btn btn-info', :type => "submit"}
+    Login
+    %i(class='loginbox-icon icon-arrow-right icon-large')

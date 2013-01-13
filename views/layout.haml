@@ -37,7 +37,7 @@
             %span{:class => 'icon-bar'}
             %span{:class => 'icon-bar'}
 
-          %a{:class=> 'brand', :href=> '#'}
+          %a{:class=> 'brand', :href=> '/'}
             = settings.project_name
           .nav-collapse.collapse
             %ul.nav
@@ -49,25 +49,18 @@
                 %a{:href=>'#'} Contact
 
             .pull-right
-              %a{:href => "/signup", :value => "Join, it's free!", :class => 'btn btn-success'}
-                Sign up, it's free!
-                %i(class='loginbox-icon icon-bolt icon-large')
               - if not logged_in?
-                %a{:href => "/login", :value => "Login", :class => 'btn btn-info'}
-                  Login
-                  %i(class='loginbox-icon icon-lock icon-large')
-
-    - if flash[:notice]
-      .alert.alert-error.fade.in.out
-        %button{:class => 'close', "data-dismiss" => 'alert'}
-          &times;
-        = flash[:notice]
-
-    :javascript
-      $('.close').click(function () {
-        $('.alert').slideUp(150);
-      })
-
+                %a{:href => "/signup", :value => "Join, it's free!", :class => 'btn btn-success'}
+                  Sign up, it's free!
+                  %i(class='loginbox-icon icon-bolt icon-large')
+                - if request.path_info != '/login'
+                  %a{:href => "/login", :value => "Login", :class => 'btn btn-info'}
+                    Login
+                    %i(class='loginbox-icon icon-lock icon-large')
+              - if logged_in?
+                %a{:href => "/logout", :value => "Logout", :class => 'btn btn-warning'}
+                  Logout
+                  %i(class='loginbox-icon icon-unlock icon-large')
 
     .container
       .content

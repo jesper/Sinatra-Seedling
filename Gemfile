@@ -5,7 +5,6 @@ gem 'bson_ext'
 gem 'shotgun'
 gem 'encrypted_cookie'
 gem 'rack'
-gem 'rack-flash3'
 gem 'sinatra-authentication'
 gem 'haml'
 

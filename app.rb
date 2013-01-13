@@ -2,7 +2,6 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/base'
 require 'mongo_mapper'
-require 'rack-flash'
 require 'sinatra-authentication'
 require 'haml'
 
@@ -12,7 +11,6 @@ class Seedling < Sinatra::Base
   get '/' do
     @users = User.all
     @page_title = 'Home'
-    flash[:notice] = 'xxxxxxxxwat wat wat'
     haml :index
   end
 
