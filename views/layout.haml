@@ -58,7 +58,10 @@
                     Login
                     %i(class='loginbox-icon icon-lock icon-large')
               - if logged_in?
-                %a{:href => "/logout", :value => "Logout", :class => 'btn btn-warning'}
+                %a{:href => "/settings", :value => "Settings", :class => 'btn btn-warning'}
+                  Settings
+                  %i(class='loginbox-icon icon-cog icon-large')
+                %a{:href => "/logout", :value => "Logout", :class => 'btn btn-danger'}
                   Logout
                   %i(class='loginbox-icon icon-unlock icon-large')
 
