@@ -49,14 +49,6 @@
                 %a{:href=>'#'} Contact
 
             .pull-right
-              - if not logged_in?
-                %a{:href => "/signup", :value => "Join, it's free!", :class => 'btn btn-success'}
-                  Sign up, it's free!
-                  %i(class='loginbox-icon icon-bolt icon-large')
-                - if request.path_info != '/login'
-                  %a{:href => "/login", :value => "Login", :class => 'btn btn-info'}
-                    Login
-                    %i(class='loginbox-icon icon-lock icon-large')
               - if logged_in?
                 %a{:href => "/settings", :value => "Settings", :class => 'btn btn-warning'}
                   Settings
@@ -64,7 +56,15 @@
                 %a{:href => "/logout", :value => "Logout", :class => 'btn btn-danger'}
                   Logout
                   %i(class='loginbox-icon icon-unlock icon-large')
-
+              - else
+                - if request.path_info != '/signup'
+                  %a{:href => "/signup", :value => "Join, it's free!", :class => 'btn btn-success'}
+                    Sign up, it's free!
+                    %i(class='loginbox-icon icon-bolt icon-large')
+                - if request.path_info != '/login'
+                  %a{:href => "/login", :value => "Login", :class => 'btn btn-info'}
+                    Login
+                    %i(class='loginbox-icon icon-lock icon-large')
     .container
       .content
         .page-header
