@@ -2,18 +2,29 @@
   = haml :error, :locals => {:error => @error}
 
 %form{:action => "/signup", :method => "post"}
-  %input{:id => "user_email", :name => "user[email]", :placeholder => "E-Mail", :class => 'xlarge', :type => 'email', :size => 30}
-  %br
-  %input{:id => "user_password", :name => "user[password]", :placeholder => "Password", :type => "password"}
-  %br
-  %input{:id => "user_password_confirmation", :name => "user[password_confirmation]", :placeholder => "Confirm Password", :type => "password"}
-  %br
+  .input-prepend
+    %span(class='add-on')
+      %i(class='icon-envelope')
+    %input.span2{:id => "user_email", :name => "user[email]", :placeholder => "E-Mail", :type => 'email'}
+
+  .input-prepend
+    %span(class='add-on')
+      %i(class='icon-key')
+    %input.span2{:id => "user_password", :name => "user[password]", :placeholder => "Password", :type => "password"}
+
+  .input-prepend
+    %span(class='add-on')
+      %i(class='icon-key')
+    %input.span2{:id => "user_password_confirmation", :name => "user[password_confirmation]", :placeholder => "Confirm Password", :type => "password"}
 
   %label.checkbox{:style => 'margin-left: 3px;'}
     %input{:type => 'checkbox', :value => ''}
     %a{:href => '#tocModal', 'data-toggle' => 'modal'}
       I agree to the terms and conditions
-  %input{:value => "Sign Up", :class => 'btn-success btn', :type => "submit"}
+
+  %a{:value => "Sign up", :class => 'btn-success btn', :type => "submit"}
+    Sign up
+    %i(class='loginbox-icon icon-bolt icon-large')
 
 .modal.hide.fade{:id => 'tocModal', :role => 'dialog'}
   .modal-header
