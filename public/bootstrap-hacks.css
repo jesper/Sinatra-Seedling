@@ -2,6 +2,7 @@ html, body {
   background-color: #eee;
   background-image: url('/images/blackorchid.png');
 }
+
 body {
   padding-top: 60px; /* 40px to make the container go all the way to the bottom of the topbar */
   padding-bottom: 40px;
@@ -14,7 +15,6 @@ body {
 .content {
   background-color: #fff;
   padding: 20px;
-  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
   border: 2px solid #e5e5e5;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
