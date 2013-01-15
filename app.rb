@@ -23,7 +23,14 @@ class Seedling < Sinatra::Base
   end
 
   post '/signup' do
+
+    if not params[:user].has_key?('tos')
+      @error = 'You must accept the Terms and Conditions'
+      return haml :signup
+    end
+
     @user = User.set(params[:user])
+
     if @user.valid && @user.id
       session[:user] = @user.id
       redirect '/'

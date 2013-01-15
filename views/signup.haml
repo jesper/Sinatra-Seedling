@@ -18,11 +18,11 @@
     %input.span2{:id => "user_password_confirmation", :name => "user[password_confirmation]", :placeholder => "Confirm Password", :type => "password"}
 
   %label.checkbox{:style => 'margin-left: 3px;'}
-    %input{:type => 'checkbox', :value => ''}
+    %input{:id => "user_tos", :name => 'user[tos]', :type => 'checkbox', :value => ''}
     %a{:href => '#tocModal', 'data-toggle' => 'modal'}
-      I agree to the terms and conditions
+      I agree to the Terms and Conditions
 
-  %a{:value => "Sign up", :class => 'btn-success btn', :type => "submit"}
+  %button{:value => "Sign up", :class => 'btn-success btn', :type => "submit"}
     Sign up
     %i(class='loginbox-icon icon-bolt icon-large')
 
