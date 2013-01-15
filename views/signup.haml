@@ -26,11 +26,11 @@
     Sign up
     %i(class='loginbox-icon icon-bolt icon-large')
 
-.modal.hide.fade{:id => 'tocModal', :role => 'dialog'}
+.modal.hide.fade{:id => 'tocModal', 'tabindex' => '-1', :role => 'dialog'}
   .modal-header
     %button.close{:type => 'button', 'data-dismiss' => 'modal'}
       x
-    %h2 Terms and Conditions of Use
+    %h2 Terms and Conditions
   .modal-body
     = haml :tos
   .modal-footer
