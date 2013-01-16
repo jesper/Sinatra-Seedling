@@ -55,6 +55,7 @@ GEM
       sinbook
     sinbook (0.1.9)
       yajl-ruby
+    stringex (1.5.1)
     tilt (1.3.3)
     yajl-ruby (1.1.0)
 
@@ -70,3 +71,4 @@ DEPENDENCIES
   shotgun
   sinatra
   sinatra-authentication
+  stringex

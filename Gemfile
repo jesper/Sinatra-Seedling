@@ -7,4 +7,4 @@ gem 'encrypted_cookie'
 gem 'rack'
 gem 'sinatra-authentication'
 gem 'haml'
-
+gem 'stringex'
