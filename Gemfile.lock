@@ -37,6 +37,8 @@ GEM
       rack
     rack-protection (1.3.2)
       rack
+    rack_csrf (2.4.0)
+      rack (>= 0.9)
     rufus-tokyo (1.0.7)
     shotgun (0.9)
       rack (>= 1.0)
@@ -68,6 +70,7 @@ DEPENDENCIES
   haml
   mongo_mapper
   rack
+  rack_csrf
   shotgun
   sinatra
   sinatra-authentication

@@ -2,6 +2,9 @@
   = haml :error, :locals => {:error => "Incorrect email or password"}
 
 %form{:action => "/login", :method => "post"}
+
+  = Rack::Csrf.csrf_tag(env)
+
   .input-prepend
     %span(class='add-on')
       %i(class='icon-envelope')

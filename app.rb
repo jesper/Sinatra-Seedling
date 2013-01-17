@@ -4,9 +4,22 @@ require 'sinatra/base'
 require 'mongo_mapper'
 require 'sinatra-authentication'
 require 'haml'
+require 'rack/csrf'
 
 class Seedling < Sinatra::Base
   set :sinatra_authentication_view_path, Pathname(__FILE__).dirname.expand_path + 'views/'
+
+  class MmUser
+    include MongoMapper::Document
+
+    puts "\n\n!!!!! WHATTTTTT \n\n"
+    key :nickname, String, :required => true
+    key :nickname_url, String, :required => true,:unique => true
+
+    validates_presence_of :nickname
+    validates_presence_of :nickname_url, :allow_blank => false
+    validates_presence_of :password, :allow_blank => false
+  end
 
   get '/' do
     @users = User.all
@@ -20,6 +33,11 @@ class Seedling < Sinatra::Base
 
   get '/signup' do
     haml :signup
+  end
+
+  get '/user/:nickname_url' do
+    @user = User.get(:nickname_url => params[:nickname_url])
+    haml :show
   end
 
   post '/signup' do
