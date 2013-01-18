@@ -29,8 +29,12 @@ body {
   min-height: 500px;
 }
 
-.navbar, h1, h2 {
-  font-family: quantico, serif;
+:-moz-placeholder, ::-moz-placeholder, :-ms-input-placeholder, ::-webkit-input-placeholder {
+  font-family: Raleway, sans-serif;
+}
+
+html * {
+  font-family: Raleway, sans-serif;
 }
 
 .btn
