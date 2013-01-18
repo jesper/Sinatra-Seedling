@@ -12,7 +12,6 @@ class Seedling < Sinatra::Base
   class MmUser
     include MongoMapper::Document
 
-    puts "\n\n!!!!! WHATTTTTT \n\n"
     key :nickname, String, :required => true
     key :nickname_url, String, :required => true,:unique => true
 
