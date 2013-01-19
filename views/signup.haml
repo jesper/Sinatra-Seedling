@@ -8,12 +8,12 @@
   .input-prepend
     %span(class='add-on')
       %i(class='icon-user')
-    %input.span2{:id => "user_name", :name => "user[name]", :placeholder => "Name", :type => 'text'}
+    %input.span2{:id => "user_name", :value => @user.nil? ? '' : @user.name, :name => "user[name]", :placeholder => "Name", :type => 'text'}
 
   .input-prepend
     %span(class='add-on')
       %i(class='icon-envelope')
-    %input.span2{:id => "user_email", :name => "user[email]", :placeholder => "E-Mail", :type => 'email'}
+    %input.span2{:id => "user_email", :value => @user.nil? ? '' : @user.email, :name => "user[email]", :placeholder => "E-Mail", :type => 'email'}
 
   .input-prepend
     %span(class='add-on')
