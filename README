@@ -1,1 +1,13 @@
-A very simple Ruby Sinatra powered webapp base project. Uses sinatra-authenticaion for user login & permissions, and Twitter Bootstrap for styling.
+A simple Ruby Sinatra powered webapp base project. Uses sinatra-authenticaion & MongoMapper for user login & permissions, and Twitter Bootstrap for styling.
+
+Works out of the box on Heroku.
+
+
+Set the following environment variables:
+
+COOKIE_SECRET
+DATABASE_HOST
+DATABASE_PORT
+DATABASE_PASSWORD
+DATABASE_USER
+DATABASE

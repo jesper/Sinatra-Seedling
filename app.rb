@@ -8,12 +8,7 @@ require 'rack/csrf'
 
 class MmUser
   include MongoMapper::Document
-
-  key :name, String
-  key :name_url, String ,:unique => true
-
   validates_presence_of :email
-  validates_presence_of :name
 end
 
 
@@ -34,20 +29,18 @@ class Seedling < Sinatra::Base
     haml :signup
   end
 
-  get '/user/:name_url' do
-    @user = User.get(:name_url => params[:name_url])
-    haml :show
-  end
-
   post '/signup' do
+    if session[:user]
+      redirect '/'
+    end
 
-    if not params[:user].has_key?('tos')
+    if not params.has_key?('tos')
+      @email = params[:user][:email]
       @error = 'You must accept the Terms and Conditions'
       return haml :signup
     end
 
     @user = User.set(params[:user])
-    @user.name_url = @user.name
 
     if @user.valid && @user.id
       session[:user] = @user.id

@@ -7,13 +7,8 @@
 
   .input-prepend
     %span(class='add-on')
-      %i(class='icon-user')
-    %input.span2{:id => "user_name", :value => @user.nil? ? '' : @user.name, :name => "user[name]", :placeholder => "Name", :type => 'text'}
-
-  .input-prepend
-    %span(class='add-on')
       %i(class='icon-envelope')
-    %input.span2{:id => "user_email", :value => @user.nil? ? '' : @user.email, :name => "user[email]", :placeholder => "E-Mail", :type => 'email'}
+    %input.span2{:id => "user_email", :value => @email.nil? ? '' : @email, :name => "user[email]", :placeholder => "E-Mail", :type => 'email'}
 
   .input-prepend
     %span(class='add-on')
@@ -26,9 +21,10 @@
     %input.span2{:id => "user_password_confirmation", :name => "user[password_confirmation]", :placeholder => "Confirm Password", :type => "password"}
 
   %label.checkbox{:style => 'margin-left: 3px;'}
-    %input{:id => "user_tos", :name => 'user[tos]', :type => 'checkbox', :value => ''}
+    %input{:id => "tos", :name => 'tos', :type => 'checkbox', :value => ''}
+    I agree to the
     %a{:href => '#tocModal', 'data-toggle' => 'modal'}
-      I agree to the Terms and Conditions
+      Terms and Conditions
 
   %button{:value => "Sign up", :class => 'btn-success btn', :type => "submit"}
     Sign up
