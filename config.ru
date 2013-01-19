@@ -4,6 +4,7 @@ Bundler.require
 require './app'
 
 Seedling.set :project_name, 'Seedling'
+Seedling.set :google_analytics, ENV['GOOGLE_ANALYTICS']
 
 use Rack::Session::EncryptedCookie, :expire_after => 3600*24*60, :secret => ENV['COOKIE_SECRET']
 use Rack::Csrf, :raise => true

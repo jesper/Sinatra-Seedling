@@ -1,3 +1,5 @@
+Live demo: http://sinatra-seedling.herokuapp.com
+
 A simple Ruby Sinatra powered webapp base project. Uses sinatra-authenticaion & MongoMapper for user login & permissions, and Twitter Bootstrap for styling.
 
 Works out of the box on Heroku.
@@ -5,9 +7,15 @@ Works out of the box on Heroku.
 
 Set the following environment variables:
 
+A long/tricky cookie secret:
 COOKIE_SECRET
+
+Database connection info:
 DATABASE_HOST
 DATABASE_PORT
 DATABASE_PASSWORD
 DATABASE_USER
 DATABASE
+
+Google analytics ID:
+GOOGLE_ANALYTICS
