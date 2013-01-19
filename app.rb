@@ -6,19 +6,19 @@ require 'sinatra-authentication'
 require 'haml'
 require 'rack/csrf'
 
+class MmUser
+  include MongoMapper::Document
+
+  key :name, String
+  key :name_url, String ,:unique => true
+
+  validates_presence_of :email
+  validates_presence_of :name
+end
+
+
 class Seedling < Sinatra::Base
   set :sinatra_authentication_view_path, Pathname(__FILE__).dirname.expand_path + 'views/'
-
-  class MmUser
-    include MongoMapper::Document
-
-    key :nickname, String, :required => true
-    key :nickname_url, String, :required => true,:unique => true
-
-    validates_presence_of :nickname
-    validates_presence_of :nickname_url, :allow_blank => false
-    validates_presence_of :password, :allow_blank => false
-  end
 
   get '/' do
     @users = User.all
@@ -34,8 +34,8 @@ class Seedling < Sinatra::Base
     haml :signup
   end
 
-  get '/user/:nickname_url' do
-    @user = User.get(:nickname_url => params[:nickname_url])
+  get '/user/:name_url' do
+    @user = User.get(:name_url => params[:name_url])
     haml :show
   end
 
@@ -47,12 +47,13 @@ class Seedling < Sinatra::Base
     end
 
     @user = User.set(params[:user])
+    @user.name_url = @user.name
 
     if @user.valid && @user.id
       session[:user] = @user.id
       redirect '/'
     else
-      @error =  "There were some problems creating your account: #{@user.errors}."
+      @error =  "#{@user.errors}."
       haml :signup
     end
   end
