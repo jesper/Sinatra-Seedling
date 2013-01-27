@@ -1,6 +1,3 @@
-- if request.referer and request.referer.include? '/login'
-  = haml :error, :locals => {:error => "Incorrect email or password"}
-
 %form{:action => "/login", :method => "post"}
 
   = Rack::Csrf.csrf_tag(env)
@@ -8,13 +5,19 @@
   .input-prepend
     %span(class='add-on')
       %i(class='icon-envelope')
-    %input{:id => "user_email", :name => "email", :placeholder => "E-Mail", :class => 'span2', :type => 'text'}
+    %input{:id => "user_email", :value => h(@email), :name => "email", :placeholder => "E-Mail", :class => 'span2', :type => 'text'}
 
   .input-prepend
     %span(class='add-on')
       %i(class='icon-key')
     %input{:id => "user_password", :name => "password", :placeholder => "Password", :class => 'span2', :type => "password"}
 
+  %br
+
   %button{:value => "Login", :class => 'btn btn-info', :type => "submit"}
     Login
     %i(class='loginbox-icon icon-arrow-right icon-large')
+
+%br
+%a{:href => '/forgot_password'}
+  I forgot my password.

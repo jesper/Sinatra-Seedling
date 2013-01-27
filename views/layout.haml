@@ -35,22 +35,19 @@
             %span{:class => 'icon-bar'}
             %span{:class => 'icon-bar'}
 
-          %a{:class=> 'brand', :href=> '/'}
+          %a.brand{:href=> '/'}
             = settings.project_name
           .nav-collapse.collapse
             %ul.nav
               %li{:class=>'active'}
-                %a{:href=>'#'} Home
-              %li
-                %a{:href=>'#'} About
-              %li
-                %a{:href=>'#'} Contact
+                %a{:href=>'/'} Home
 
             .pull-right
               - if logged_in?
-                %a{:href => "/settings", :value => "Settings", :class => 'btn btn-warning'}
-                  Settings
-                  %i(class='loginbox-icon icon-cog icon-large')
+                - if request.path_info != '/settings'
+                  %a{:href => "/settings", :value => "Settings", :class => 'btn btn-warning'}
+                    Settings
+                    %i(class='loginbox-icon icon-cog icon-large')
                 %a{:href => "/logout", :value => "Logout", :class => 'btn btn-danger'}
                   Logout
                   %i(class='loginbox-icon icon-unlock icon-large')
@@ -70,4 +67,5 @@
             = @page_title
         .row
           .span10
+            = haml :alert
             =yield

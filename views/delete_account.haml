@@ -1,0 +1,22 @@
+%form{:action => "/delete_account", :method => "post"}
+  = Rack::Csrf.csrf_tag(env)
+
+  It's a shame you're thinking about deleting your account!
+  %br
+  Would you please tell us why?
+  %br
+  %textarea{'rows' => '3', :name => 'reason', :id => 'reason', :placeholder => "I'm deleting my account because..."}
+    = h(@reason)
+  %br
+  .alert.alert-block{:style => 'display: inline-block; text-align:center;'}
+    %b{:style => 'color: red;'}
+      Deleting your account is permanent and cannot be undone!
+    %br
+    %br
+    .input-append.input-prepend
+      %span(class='add-on')
+        %i(class='icon-key')
+      %input{:placeholder => "Password", :id => "password", :name => "password", :size => 30, :type => "password" }
+    %button{:value => "Delete Account", :class => 'btn-danger btn', :type => "submit"}
+      Delete My Account
+      %i(class='loginbox-icon icon-trash icon-large')

@@ -1,6 +1,3 @@
-- if @error
-  = haml :error, :locals => {:error => @error}
-
 %form{:action => "/signup", :method => "post"}
 
   = Rack::Csrf.csrf_tag(env)
@@ -8,7 +5,7 @@
   .input-prepend
     %span(class='add-on')
       %i(class='icon-envelope')
-    %input.span2{:id => "user_email", :value => @email.nil? ? '' : @email, :name => "user[email]", :placeholder => "E-Mail", :type => 'email'}
+    %input.span2{:id => "user_email", :value => h(@email), :name => "user[email]", :placeholder => "E-Mail", :type => 'email'}
 
   .input-prepend
     %span(class='add-on')
@@ -20,11 +17,15 @@
       %i(class='icon-key')
     %input.span2{:id => "user_password_confirmation", :name => "user[password_confirmation]", :placeholder => "Confirm Password", :type => "password"}
 
+  %br
+
   %label.checkbox{:style => 'margin-left: 3px;'}
     %input{:id => "tos", :name => 'tos', :type => 'checkbox', :value => ''}
     I agree to the
     %a{:href => '#tocModal', 'data-toggle' => 'modal'}
       Terms and Conditions
+
+  %br
 
   %button{:value => "Sign up", :class => 'btn-success btn', :type => "submit"}
     Sign up

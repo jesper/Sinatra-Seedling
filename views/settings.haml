@@ -1,16 +1,40 @@
-%form{:action => "/settings/#{@user.id}", :method => "post"}
-  .field
-    .label
-      %label{:for => "user_email"} Email
-    %input{ :id => "user_email", :name => "user[email]", :size => 30, :type => "text", :value => @user.email }
-  .field
-    .label
-      %label{:for => "user_password"} New password
-    %input{ :id => "user_password", :name => "user[password]", :size => 30, :type => "password" }
-  .field
-    .label
-      %label{:for => "user_password_confirmation"} Confirm
-    %input{ :id => "user_password_confirmation", :name => "user[password_confirmation]", :size => 30, :type => "password" }
+%form{:action => "/settings", :method => "post"}
+  = Rack::Csrf.csrf_tag(env)
 
-  .buttons
-    %input{ :value => "Update", :type => "submit" }
+  %span.alert.alert-info{:style => 'display: inline-block;'}
+    %h5 Change Password
+    .input-prepend
+      %span(class='add-on')
+        %i(class='icon-key')
+      %input{:placeholder => "New Password", :id => "user_password", :name => "user[password]", :size => 30, :type => "password" }
+
+    .input-prepend
+      %span(class='add-on')
+        %i(class='icon-key')
+      %input{:placeholder => "Confirm New Password", :id => "user_password_confirmation", :name => "user[password_confirmation]", :size => 30, :type => "password" }
+
+  %hr
+
+  %span.alert.alert-block{:style => 'display: inline-block; text-align:center;'}
+    .input-append.input-prepend
+      %span(class='add-on')
+        %i(class='icon-key')
+      %input{:placeholder => "Current Password", :id => "old_password", :name => "old_password", :size => 30, :type => "password" }
+    %button{:value => "Save Settings", :class => 'btn-warning btn', :type => "submit"}
+      Apply Changes
+      %i(class='loginbox-icon icon-wrench icon-large')
+
+%button{:value => "Delete account", :href => "#confirm_delete", 'data-toggle' => 'modal', :class => 'pull-right btn-danger btn'}
+  Delete Account
+  %i(class='loginbox-icon icon-trash icon-large')
+
+.modal.hide.fade{:id => 'confirm_delete', 'tabindex' => '-1', :role => 'dialog'}
+  .modal-header
+    %button.close{:type => 'button', 'data-dismiss' => 'modal'}
+      x
+    %h2 Sorry to see you go!
+  .modal-body
+    = haml :delete_account
+  .modal-footer
+    %button.btn{'data-dismiss' => 'modal'}
+      Close
